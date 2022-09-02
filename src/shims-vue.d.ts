@@ -4,3 +4,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+declare module 'lodash'
+declare module 'mockjs'
+declare module 'uuid_token'

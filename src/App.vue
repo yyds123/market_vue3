@@ -1,30 +1,24 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Header></Header>
+  <router-view></router-view>
+  <Footer v-show="$route.meta.show"></Footer>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script lang="ts">
+import { defineComponent,onMounted } from 'vue';
+import {useStore} from "vuex";
+import Header from '@/components/Header/index.vue'
+import Footer from '@/components/Footer/index.vue'
+export default defineComponent({
+  name: 'App',
+  components: {
+    Header,Footer
+  },
+  setup(){
+    const store = useStore()
+    onMounted(()=>{
+      store.dispatch('home/getCategoryList')
+    })
   }
-}
-</style>
+});
+</script>
